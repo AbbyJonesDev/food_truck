@@ -1,0 +1,30 @@
+# From blog: https://dev.to/eikooc/using-docker-for-your-elixir-phoenix-application-n8n
+# Dockerfile reference: https://docs.docker.com/engine/reference/builder/
+
+# docker run --mount type=bind,source=$(pwd),target=/app -p 4000:4000 --rm elixir-env:latest mix phx.server
+
+# Optional - add alias to run mix commands in Docker container as if it was on your machine
+# alias mix="docker run --mount type=bind,source=$(pwd),target=/app -p 4000:4000 --rm elixir:latest mix"
+
+
+# Extend from the official Elixir image
+FROM elixir:1.14
+
+RUN mix local.hex --force \
+    && mix archive.install --force hex phx_new \
+    && apt-get update \
+    && apt-get install -y postgresql-client \
+    && curl -sL https://deb.nodesource.com/setup_lts.x | bash \
+    && apt-get install -y apt-utils \
+    && apt-get install -y nodejs \
+    && apt-get install -y build-essential \
+    && apt-get install -y inotify-tools \
+    && mix local.rebar --force
+
+ENV APP_HOME /app
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
+
+EXPOSE 4000
+
+CMD ["mix", "phx.server"]
