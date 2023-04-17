@@ -1,15 +1,5 @@
 import Config
 
-# Configure your database
-config :food_truck, FoodTruck.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "db",
-  database: "food_truck_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #

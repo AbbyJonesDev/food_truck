@@ -12,9 +12,8 @@
 
 **Without Docker**
 
-* Project depends on [Elixir 1.14](https://elixir-lang.org/install.html) and [Postgres](https://www.postgresql.org)
-* You may need to update the database information in `config/dev.exs` and `config/test.exs` to match your Postgres config
-* Install dependencies and set up database: `mix setup`
+* Project depends on [Elixir 1.14](https://elixir-lang.org/install.html)
+* Install dependencies: `mix setup`
 * Run server: `mix phx.server` or inside IEx with `iex -S mix phx.server`
 * View application at http://localhost:4000
 
@@ -28,12 +27,17 @@ To run these commands in Docker, prefix them with `docker-compose run app`
 * `mix deps.audit` - check for dependencies with known vulnerabilities
 * `mix hex.audit` - check for dependencies that are no longer maintained
 * `mix sobelow` - run static application security test
+* `mix format` - auto-format code
 
 To run these commands in Docker, prefix them with `docker-compose run -e MIX_ENV=test app`
 
 * `mix test` - run tests
 * `mix coveralls` - report test coverage
 
+## Dev Notes
+
+* [Tooling](./notes/Tooling.md)
+* [Thinking Out Loud](./notes/ThinkingOutLoud.md)
 
 ## Phoenix Documentation
 

@@ -10,8 +10,6 @@ defmodule FoodTruck.Application do
     children = [
       # Start the Telemetry supervisor
       FoodTruckWeb.Telemetry,
-      # Start the Ecto repository
-      FoodTruck.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: FoodTruck.PubSub},
       # Start Finch
